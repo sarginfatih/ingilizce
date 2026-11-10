@@ -58,7 +58,10 @@ if ('speechSynthesis' in window) { pickVoice(); speechSynthesis.onvoiceschanged 
 function say(text, rate, onend) {
   if (!('speechSynthesis' in window)) { onend && onend(); return; }
   speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(String(text).replace(/→/g, ',').replace(/___/g, 'blank'));
+  let t = String(text).replace(/→/g, ',').replace(/___/g, 'blank');
+  // Kısa ifadelerde tek başına "I" harf olarak ("capital I") okunuyor; okunuşuyla değiştir.
+  if (t.trim().split(/\s+/).length <= 3) t = t.replace(/(^|[^A-Za-z'’])I(?![A-Za-z'’])/g, '$1eye');
+  const u = new SpeechSynthesisUtterance(t);
   u.lang = voice ? voice.lang : 'en-US';
   if (voice) u.voice = voice;
   u.rate = rate || S.settings.rate;

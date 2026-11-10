@@ -1,6 +1,6 @@
 /* Çevrimdışı çalışma: tüm dosyalar önbelleğe alınır.
    İçerik güncellenince VERSION değerini artır (ör. v2) ki iPad yeni sürümü indirsin. */
-const VERSION = 'v1';
+const VERSION = 'v2';
 const CACHE = 'ingilizce-' + VERSION;
 const FILES = [
   './', 'index.html', 'css/styles.css', 'js/app.js', 'js/lexicon.js',
